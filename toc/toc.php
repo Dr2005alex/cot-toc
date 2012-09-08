@@ -18,13 +18,13 @@ require_once cot_langfile('toc', 'plug');
  */
 function toc($cat, $tpl = 'toc', $only_siblings = FALSE)
 {
-	global $cache, $cfg;
+	global $cache, $cfg, $lang;
 
 	// Load the structure tree
 	$cache_loaded = false;
 	if ($cache && $cfg['plugin']['toc']['cache'])
 	{
-		$cache_name = 'toc_tree_' . $cat;
+		$cache_name = 'toc_tree_' . $cat . '-' . $lang;
 		global $$cache_name;
 		if ($$cache_name)
 		{
