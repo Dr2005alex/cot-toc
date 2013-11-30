@@ -75,7 +75,7 @@ function toc_display($t, $tpl, $item, $level, $number, $only_siblings = FALSE)
 	global $c, $id, $pag;
 
 	$current_cat = defined('COT_LIST') ? $c : $pag['page_cat'];
-
+	$view_page = false;
 	if ($item['type'] == 'cat')
 	{
 		// Check permissions
@@ -93,12 +93,13 @@ function toc_display($t, $tpl, $item, $level, $number, $only_siblings = FALSE)
 				{
 					toc_display($t1, $tpl, $sub, $level + 1, "$number.$num", $only_siblings);
 					$num++;
+					$view_page = true;
 				}
 			}
 			$t1->assign('LIST_LEVEL', $level);
 			$t1->parse('LIST');
 			// Nest the list
-			$t->assign('ROW_ITEMS', $t1->text('LIST'));
+			if ($view_pag) $t->assign('ROW_ITEMS', $t1->text('LIST'));
 			unset($t1);
 		}
 		else
