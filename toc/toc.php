@@ -96,10 +96,12 @@ function toc_display($t, $tpl, $item, $level, $number, $only_siblings = FALSE)
 					$view_page = true;
 				}
 			}
-			$t1->assign('LIST_LEVEL', $level);
-			$t1->parse('LIST');
+			if ($view_pag){
+				$t1->assign('LIST_LEVEL', $level);
+				$t1->parse('LIST');
+			}
 			// Nest the list
-			if ($view_pag) $t->assign('ROW_ITEMS', $t1->text('LIST'));
+			$t->assign('ROW_ITEMS', $t1->text('LIST'));
 			unset($t1);
 		}
 		else
